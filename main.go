@@ -49,11 +49,16 @@ func main() {
 			Name:        "!weather",
 			Description: "[city] | [country code] | [units] - if there are same city names but in different countries, then add a \",\"  after city name in [city] then followed by the country initials for the correct city",
 			Handler:     cmd.NewWeatherCommander("weatherApi.token"),
-    },
+		},
 		cmd.Command{
 			Name:        "!random",
 			Description: "[dog or cat] - Wanna see cute cat or dog image here it is!",
 			Handler:     cmd.RandomCommander{},
+		},
+		cmd.Command{
+			Name:        "!live",
+			Description: "[None] Subscribe or unsubscribe to an update when Unit goes live",
+			Handler:     cmd.NewLiveCommander("969626314422247425"),
 		},
 		// cmd.Command{
 		// 	Name:    "!random",
@@ -87,7 +92,6 @@ func main() {
 	} else if os.Args[1] != "test" {
 		livestreamId := os.Args[1]
 		log.Println(livestreamId)
-
 		ytToken, err := ioutil.ReadFile("token.json")
 		if err != nil {
 			log.Fatalf("Unable to read client secret file: %v", err)
